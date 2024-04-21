@@ -1,4 +1,5 @@
 import "./App.css";
+import pizzaData from "./data";
 function App() {
   return (
     <div className="container">
@@ -21,34 +22,25 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza
-        alt="pizza"
-        src="pizza/mango.png"
-        pizzaName="Pizza Spinachi"
-        pizzaDes="Tomato, mozarella, spnich, and ricotta cheese"
-        price={10}
-      ></Pizza>
-      <Pizza
-        alt="pizza"
-        src="pizza/order.png"
-        pizzaName="Pizza Spegeti"
-        pizzaDes="Potatto, spnich, cheese, and butter"
-        price={12}
-      ></Pizza>
+      <ul className="pizzas">
+        {pizzaData.map((u) => (
+          <Pizza data={u} key={u.name}></Pizza>
+        ))}
+      </ul>
     </main>
   );
 }
 
 function Pizza(props) {
   return (
-    <div className="pizza">
-      <img alt={props.alt} src={props.src}></img>
+    <li className="pizza">
+      <img alt={props.alt} src={props.data.photoName}></img>
       <div>
-        <h1>{props.pizzaName}</h1>
-        <p>{props.pizzaDes}</p>
-        <span>{props.price}</span>
+        <h1>{props.data.name}</h1>
+        <p>{props.data.ingredients}</p>
+        <span>{props.data.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
